@@ -22,6 +22,7 @@ type Pair[K any, V any] struct {
   - Split(): 分解返回原始键值
 
 ### 2、核心功能函数
+
 🆕 构造器
 ```go
 func NewPairs[K, V any](keys []K, values []V) ([]Pair[K, V], error)
