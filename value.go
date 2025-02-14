@@ -522,6 +522,7 @@ func (av AnyValue) BoolOrDefault(def bool) bool {
 	val, err := av.Bool()
 	if err != nil {
 		return def
+
 	}
 	return val
 }
