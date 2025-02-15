@@ -279,6 +279,7 @@ func (s *testPairSuite) TestPackPairs(t *testing.T) {
 
 		pairs := PackPairs[string, Custom](flat)
 		require.Len(t, pairs, 2)
+
 		assert.Equal(t, "id1", pairs[0].Key)
 		assert.Equal(t, "Alice", pairs[0].Value.name)
 		assert.Equal(t, 100, pairs[1].Key)
