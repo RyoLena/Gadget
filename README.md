@@ -10,3 +10,10 @@
 2. 网络通信
 3. 数据库相关的(加密、Scan等)
 
+
+## 下载
+需要通过
+```shell
+go git github.com/RyoLena/Gadget@v0.0.2
+```
+使用go下载工具下载
