@@ -1,6 +1,6 @@
 package slice
 
-import "Gadget/internal/slice"
+import "github.com/RyoLena/Gadget/internal/slice"
 
 // Add 在index处添加元素
 // index 范围应为[0, len(src)]

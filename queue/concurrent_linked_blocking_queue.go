@@ -1,8 +1,8 @@
 package queue
 
 import (
-	"Gadget/list"
 	"context"
+	"github.com/RyoLena/Gadget/list"
 	"sync"
 )
 

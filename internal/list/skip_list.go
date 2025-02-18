@@ -1,9 +1,9 @@
 package list
 
 import (
-	"Gadget"
-	"Gadget/internal/errs"
 	"errors"
+	"github.com/RyoLena/Gadget"
+	"github.com/RyoLena/Gadget/internal/errs"
 	"math/rand"
 )
 

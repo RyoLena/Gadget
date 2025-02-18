@@ -1,10 +1,10 @@
 package list
 
 import (
-	"Gadget"
-	"Gadget/internal/errs"
 	"errors"
 	"fmt"
+	"github.com/RyoLena/Gadget"
+	"github.com/RyoLena/Gadget/internal/errs"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

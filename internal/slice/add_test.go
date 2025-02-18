@@ -1,7 +1,7 @@
 package slice
 
 import (
-	"Gadget/internal/errs"
+	"github.com/RyoLena/Gadget/internal/errs"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

@@ -1,8 +1,8 @@
 package Gadget
 
 import (
-	"Gadget/internal/errs"
 	"errors"
+	"github.com/RyoLena/Gadget/internal/errs"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

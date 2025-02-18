@@ -3,9 +3,9 @@
 package Gadget
 
 import (
-	"Gadget/internal/errs"
 	"encoding/json"
 	"errors"
+	"github.com/RyoLena/Gadget/internal/errs"
 	"reflect"
 	"strconv"
 )

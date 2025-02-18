@@ -1,9 +1,9 @@
 package queue
 
 import (
-	"Gadget"
-	"Gadget/internal/slice"
 	"errors"
+	"github.com/RyoLena/Gadget"
+	"github.com/RyoLena/Gadget/internal/slice"
 )
 
 var (

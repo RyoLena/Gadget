@@ -1,7 +1,7 @@
 package queue
 
 import (
-	"Gadget"
+	"github.com/RyoLena/Gadget"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"

@@ -1,106 +1,132 @@
 package queue
 
 import (
-	"Gadget"
-	"fmt"
+	"github.com/RyoLena/Gadget"
+	"github.com/RyoLena/Gadget/internal/queue"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
+func compare() Gadget.Comparator[int] {
+	return Gadget.ComparatorRealNumber[int]
+}
+
 func TestNewPriorityQueue(t *testing.T) {
-	type args[T any] struct {
-		capacity int
-		compare  Gadget.Comparator
+	testCases := []struct {
+		name     string
+		initSize int
+		compare  Gadget.Comparator[int]
+		wantErr  error
+	}{
+		{
+			name:     "compare is nil",
+			initSize: 8,
+			compare:  nil,
+		},
+		{
+			name:     "compare is ok",
+			initSize: 8,
+			compare:  compare(),
+		},
 	}
-	type testCase[T any] struct {
-		name string
-		args args[T]
-		want *PriorityQueue[T]
-	}
-	tests := []testCase[ /* TODO: Insert concrete types here */ ]{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			assert.Equalf(t, tt.want, NewPriorityQueue(tt.args.capacity, tt.args.compare), "NewPriorityQueue(%v, %v)", tt.args.capacity, tt.args.compare)
-		})
-	}
-}
-
-func TestPriorityQueue_Dequeue(t *testing.T) {
-	type testCase[T any] struct {
-		name    string
-		pq      PriorityQueue[T]
-		want    T
-		wantErr assert.ErrorAssertionFunc
-	}
-	tests := []testCase[ /* TODO: Insert concrete types here */ ]{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, err := tt.pq.Dequeue()
-			if !tt.wantErr(t, err, fmt.Sprintf("Dequeue()")) {
-				return
-			}
-			assert.Equalf(t, tt.want, got, "Dequeue()")
-		})
-	}
-}
-
-func TestPriorityQueue_Enqueue(t *testing.T) {
-	type args[T any] struct {
-		t T
-	}
-	type testCase[T any] struct {
-		name    string
-		pq      PriorityQueue[T]
-		args    args[T]
-		wantErr assert.ErrorAssertionFunc
-	}
-	tests := []testCase[ /* TODO: Insert concrete types here */ ]{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			tt.wantErr(t, tt.pq.Enqueue(tt.args.t), fmt.Sprintf("Enqueue(%v)", tt.args.t))
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			_ = NewPriorityQueue[int](tc.initSize, tc.compare)
 		})
 	}
 }
 
 func TestPriorityQueue_Len(t *testing.T) {
-	type testCase[T any] struct {
-		name string
-		pq   PriorityQueue[T]
-		want int
+	testCases := []struct {
+		name     string
+		initSize int
+		compare  Gadget.Comparator[int]
+		wantLen  int
+	}{
+		{
+			name:     "no err is ok",
+			initSize: 8,
+			compare:  compare(),
+			wantLen:  0,
+		},
 	}
-	tests := []testCase[ /* TODO: Insert concrete types here */ ]{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			assert.Equalf(t, tt.want, tt.pq.Len(), "Len()")
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			pq := NewPriorityQueue[int](tc.initSize, tc.compare)
+			assert.Equal(t, tc.wantLen, pq.Len())
 		})
 	}
 }
 
 func TestPriorityQueue_Peek(t *testing.T) {
-	type testCase[T any] struct {
-		name    string
-		pq      PriorityQueue[T]
-		want    T
-		wantErr assert.ErrorAssertionFunc
+	testCases := []struct {
+		name       string
+		initSize   int
+		compare    Gadget.Comparator[int]
+		wantResult int
+		wantErr    error
+	}{
+		{
+			name:     "no err is ok",
+			initSize: 8,
+			compare:  compare(),
+			wantErr:  queue.ErrEmptyQueue,
+		},
 	}
-	tests := []testCase[ /* TODO: Insert concrete types here */ ]{
-		// TODO: Add test cases.
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			pq := NewPriorityQueue[int](tc.initSize, tc.compare)
+			result, err := pq.Peek()
+			assert.Equal(t, tc.wantResult, result)
+			assert.Equal(t, tc.wantErr, err)
+		})
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, err := tt.pq.Peek()
-			if !tt.wantErr(t, err, fmt.Sprintf("Peek()")) {
-				return
-			}
-			assert.Equalf(t, tt.want, got, "Peek()")
+}
+
+func TestPriorityQueue_Enqueue(t *testing.T) {
+	testCases := []struct {
+		name        string
+		initSize    int
+		compare     Gadget.Comparator[int]
+		enqueueData int
+		wantErr     error
+	}{
+		{
+			name:     "no err is ok",
+			initSize: 8,
+			compare:  compare(),
+		},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			pq := NewPriorityQueue[int](tc.initSize, tc.compare)
+			err := pq.Enqueue(tc.enqueueData)
+			assert.Equal(t, tc.wantErr, err)
+		})
+	}
+}
+
+func TestPriorityQueue_Dequeue(t *testing.T) {
+	testCases := []struct {
+		name       string
+		initSize   int
+		compare    Gadget.Comparator[int]
+		wantResult int
+		wantErr    error
+	}{
+		{
+			name:     "no err is ok",
+			initSize: 8,
+			compare:  compare(),
+			wantErr:  queue.ErrEmptyQueue,
+		},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			pq := NewPriorityQueue[int](tc.initSize, tc.compare)
+			result, err := pq.Dequeue()
+			assert.Equal(t, tc.wantResult, result)
+			assert.Equal(t, tc.wantErr, err)
 		})
 	}
 }

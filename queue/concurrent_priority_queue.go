@@ -1,8 +1,8 @@
 package queue
 
 import (
-	"Gadget"
-	"Gadget/internal/queue"
+	"github.com/RyoLena/Gadget"
+	"github.com/RyoLena/Gadget/internal/queue"
 	"sync"
 )
 

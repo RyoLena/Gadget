@@ -1,6 +1,6 @@
 package slice
 
-import "Gadget/internal/errs"
+import "github.com/RyoLena/Gadget/internal/errs"
 
 func Add[T any](src []T, element T, index int) ([]T, error) {
 	length := len(src)

@@ -1,8 +1,8 @@
 package Gadget
 
 import (
-	"Gadget/tuple/pair"
 	"errors"
+	"github.com/RyoLena/Gadget/tuple/pair"
 	"math/rand"
 )
 

@@ -1,6 +1,6 @@
 package slice
 
-import "Gadget/internal/errs"
+import "github.com/RyoLena/Gadget/internal/errs"
 
 func Delete[T any](src []T, index int) ([]T, T, error) {
 	length := len(src)
